@@ -1,10 +1,13 @@
 
-#include <QCoreApplication>
-
+#include <QApplication>
+#include "app.h"
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication a(argc, argv);
+   QApplication a(argc, argv);
+
+    App app;
+    app.show();
 
     return a.exec();
 }
