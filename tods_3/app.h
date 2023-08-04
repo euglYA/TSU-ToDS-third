@@ -5,6 +5,7 @@
 
 #include <QWidget>
 
+#include "filescomponent.h"
 
 class App : public QWidget
 {
@@ -12,8 +13,12 @@ class App : public QWidget
 public:
     explicit App(QWidget *parent = nullptr);
 
+public slots:
+
 signals:
 
+private:
+    FilesComponent *filesComponent;
 };
 
 #endif // APP_H

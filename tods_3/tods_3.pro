@@ -10,7 +10,8 @@ CONFIG += c++17 cmdline
 
 SOURCES += \
         app.cpp \
-        charts.cpp \
+        chartscomponent.cpp \
+        filescomponent.cpp \
         main.cpp
 
 # Default rules for deployment.
@@ -20,7 +21,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     app.h \
-    charts.h
+    chartscomponent.h \
+    filescomponent.h
 
 QT += charts
 
