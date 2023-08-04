@@ -4,10 +4,11 @@
 
 
 #include <QWidget>
+#include <QMainWindow>
 
 #include "filescomponent.h"
 
-class App : public QWidget
+class App : public QMainWindow
 {
     Q_OBJECT
 public:
