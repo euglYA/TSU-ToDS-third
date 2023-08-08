@@ -12,6 +12,7 @@
 #include <QPushButton>
 #include <QComboBox>
 #include <QCheckBox>
+#include <QLabel>
 
 class ChartsComponent : public QWidget
 {
@@ -22,6 +23,8 @@ public:
 
 signals:
 
+
+
 private:
     QChartView *chartView;
     QVBoxLayout *vLayout;
@@ -29,6 +32,7 @@ private:
     QPushButton *saveAsPDF;
     QComboBox *chooseChartType;
     QCheckBox *swapChartTheme;
+    QLabel *swapThemeLabel;
 };
 
 #endif // CHARTSCOMPONENT_H

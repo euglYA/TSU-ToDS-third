@@ -11,6 +11,7 @@
 #include <QLabel>
 #include <QListWidget>
 #include <QPushButton>
+#include <QFileDialog>
 
 class FilesComponent : public QListWidget
 {
@@ -20,6 +21,9 @@ public:
     ~FilesComponent() = default;
 
 signals:
+
+public slots:
+    void onClickedChooseDirectory();
 
 private:
     QPushButton *chooseDirectoryButton;

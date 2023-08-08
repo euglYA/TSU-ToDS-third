@@ -28,5 +28,18 @@ FilesComponent::FilesComponent(QWidget *parent)
     this->boxLayout->addWidget(this->chooseDirectoryButton);
     this->boxLayout->addWidget(this->tableView);
     this->boxLayout->addWidget(this->pathLabel);
+
+    QObject::connect(this->chooseDirectoryButton, &QPushButton::clicked, this, &FilesComponent::onClickedChooseDirectory);
 }
+
+void FilesComponent::onClickedChooseDirectory() {
+    QFileDialog::getExistingDirectory();
+    /*QString dir = QFileDialog::getExistingDirectory();
+    if (!dir.isEmpty()) {
+        this->fsModel->setRootPath(dir);
+        this->tableView->setRootIndex(this->fsModel->index(dir));
+        this->pathLabel->setText(dir);
+    }*/
+}
+
 
