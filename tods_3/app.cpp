@@ -14,11 +14,14 @@ App::App(QWidget *parent)
 
     this->filesComponent = new FilesComponent(this);
     filesComponent->setFixedWidth(459);
+    this->chartsComponent = new ChartsComponent(this);
+
     QSplitter *splitter = new QSplitter(this);
 
     splitter->setStretchFactor(0, 1);
     splitter->setStretchFactor(1, 3);
     splitter->addWidget(filesComponent);
+    splitter->addWidget(chartsComponent);
 
     this->setCentralWidget(splitter);
     this->resize(1000, 700);

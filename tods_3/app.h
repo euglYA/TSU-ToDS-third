@@ -6,6 +6,7 @@
 #include <QWidget>
 #include <QMainWindow>
 
+#include "chartscomponent.h"
 #include "filescomponent.h"
 
 class App : public QMainWindow
@@ -20,6 +21,7 @@ signals:
 
 private:
     FilesComponent *filesComponent;
+    ChartsComponent *chartsComponent;
 };
 
 #endif // APP_H

@@ -13,20 +13,20 @@ FilesComponent::FilesComponent(QWidget *parent)
     this->chooseDirectoryButton = new QPushButton("Open folder...", this);
     this->chooseDirectoryButton->setFixedSize(100, 30);
 
-    this->qfsModel = new QFileSystemModel(this);
-    this->qfsModel->setFilter(QDir::NoDotAndDotDot | QDir::Files);
-    this->qfsModel->setNameFilters(filters);
-    this->qfsModel->setNameFilterDisables(false);
-    this->qfsModel->setRootPath(homePath);
+    this->fsModel = new QFileSystemModel(this);
+    this->fsModel->setFilter(QDir::NoDotAndDotDot | QDir::Files);
+    this->fsModel->setNameFilters(filters);
+    this->fsModel->setNameFilterDisables(false);
+    this->fsModel->setRootPath(homePath);
 
-    this->qtableView = new QTableView();
-    this->qtableView->setModel(this->qfsModel);
-    this->qtableView->setRootIndex(this->qfsModel->setRootPath(homePath));
+    this->tableView = new QTableView();
+    this->tableView->setModel(this->fsModel);
+    this->tableView->setRootIndex(this->fsModel->setRootPath(homePath));
 
     this->pathLabel = new QLabel("Current path: " + homePath, this);
 
     this->boxLayout->addWidget(this->chooseDirectoryButton);
-    this->boxLayout->addWidget(this->qtableView);
+    this->boxLayout->addWidget(this->tableView);
     this->boxLayout->addWidget(this->pathLabel);
 }
 

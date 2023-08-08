@@ -23,8 +23,8 @@ signals:
 
 private:
     QPushButton *chooseDirectoryButton;
-    QFileSystemModel *qfsModel;
-    QTableView *qtableView;
+    QFileSystemModel *fsModel;
+    QTableView *tableView;
     QVBoxLayout *boxLayout;
     QLabel *pathLabel;
 };
