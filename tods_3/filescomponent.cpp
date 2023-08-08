@@ -33,13 +33,12 @@ FilesComponent::FilesComponent(QWidget *parent)
 }
 
 void FilesComponent::onClickedChooseDirectory() {
-    QFileDialog::getExistingDirectory();
-    /*QString dir = QFileDialog::getExistingDirectory();
+    QString dir = QFileDialog::getExistingDirectory();
     if (!dir.isEmpty()) {
         this->fsModel->setRootPath(dir);
         this->tableView->setRootIndex(this->fsModel->index(dir));
         this->pathLabel->setText(dir);
-    }*/
+    }
 }
 
 
