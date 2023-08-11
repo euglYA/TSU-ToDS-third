@@ -24,6 +24,5 @@ ChartsComponent::ChartsComponent(QWidget *parent)
 
     this->vLayout->addLayout(this->hLayout);
     this->vLayout->addWidget(this->chartView);
-
 }
 

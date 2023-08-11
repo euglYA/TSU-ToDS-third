@@ -19,17 +19,20 @@ class FilesComponent : public QListWidget
 public:
     explicit FilesComponent(QWidget *parent = nullptr);
     ~FilesComponent() = default;
+    QItemSelectionModel *selectionModel;
 
 signals:
+    void fileSelected(QFileInfo selectedFile);
 
 public slots:
     void onClickedChooseDirectory();
+    void onClickedFile(const QModelIndex& selectedFile);
 
 private:
     QPushButton *chooseDirectoryButton;
     QFileSystemModel *fsModel;
     QTableView *tableView;
-    QVBoxLayout *boxLayout;
+    QVBoxLayout *vLayout;
     QLabel *pathLabel;
 };
 

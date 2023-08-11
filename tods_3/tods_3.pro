@@ -12,6 +12,7 @@ SOURCES += \
         app.cpp \
         charts.cpp \
         chartscomponent.cpp \
+        filereader.cpp \
         filescomponent.cpp \
         main.cpp
 
@@ -24,7 +25,9 @@ HEADERS += \
     app.h \
     charts.h \
     chartscomponent.h \
-    filescomponent.h
+    filereader.h \
+    filescomponent.h \
+    ioc.h
 
 QT += charts
 

@@ -1,4 +1,4 @@
-
+#include <QDebug>
 #include "filescomponent.h"
 
 FilesComponent::FilesComponent(QWidget *parent)
@@ -8,7 +8,7 @@ FilesComponent::FilesComponent(QWidget *parent)
     QStringList filters;
     filters << "*.json" << "*.sqlite";
 
-    this->boxLayout = new QVBoxLayout(this);
+    this->vLayout = new QVBoxLayout(this);
 
     this->chooseDirectoryButton = new QPushButton("Open folder...", this);
     this->chooseDirectoryButton->setFixedSize(100, 30);
@@ -25,11 +25,14 @@ FilesComponent::FilesComponent(QWidget *parent)
 
     this->pathLabel = new QLabel("Current path: " + homePath, this);
 
-    this->boxLayout->addWidget(this->chooseDirectoryButton);
-    this->boxLayout->addWidget(this->tableView);
-    this->boxLayout->addWidget(this->pathLabel);
+    this->vLayout->addWidget(this->chooseDirectoryButton);
+    this->vLayout->addWidget(this->tableView);
+    this->vLayout->addWidget(this->pathLabel);
+
+    this->selectionModel = this->tableView->selectionModel();
 
     QObject::connect(this->chooseDirectoryButton, &QPushButton::clicked, this, &FilesComponent::onClickedChooseDirectory);
+    QObject::connect(this->selectionModel, &QItemSelectionModel::currentChanged, this, &FilesComponent::onClickedFile);
 }
 
 void FilesComponent::onClickedChooseDirectory() {
@@ -39,6 +42,19 @@ void FilesComponent::onClickedChooseDirectory() {
         this->tableView->setRootIndex(this->fsModel->index(dir));
         this->pathLabel->setText(dir);
     }
+}
+
+void FilesComponent::onClickedFile(const QModelIndex& selectedFile) {
+    static QModelIndex lastChoosedFile;
+
+    if (this->fsModel->fileInfo(selectedFile).isDir())
+        return;
+
+    if (lastChoosedFile != selectedFile) {
+        emit FilesComponent::fileSelected(fsModel->fileInfo(selectedFile));
+        lastChoosedFile = selectedFile;
+    }
+    qDebug() << "sosi";
 }
 
 

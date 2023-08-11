@@ -1,4 +1,3 @@
-
 #ifndef CHARTSCOMPONENT_H
 #define CHARTSCOMPONENT_H
 
