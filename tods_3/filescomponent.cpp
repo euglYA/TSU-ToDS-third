@@ -1,4 +1,3 @@
-#include <QDebug>
 #include "filescomponent.h"
 
 FilesComponent::FilesComponent(QWidget *parent)
@@ -47,14 +46,10 @@ void FilesComponent::onClickedChooseDirectory() {
 void FilesComponent::onClickedFile(const QModelIndex& selectedFile) {
     static QModelIndex lastChoosedFile;
 
-    if (this->fsModel->fileInfo(selectedFile).isDir())
-        return;
-
     if (lastChoosedFile != selectedFile) {
         emit FilesComponent::fileSelected(fsModel->fileInfo(selectedFile));
         lastChoosedFile = selectedFile;
     }
-    qDebug() << "sosi";
 }
 
 

@@ -14,6 +14,8 @@ SOURCES += \
         chartscomponent.cpp \
         filereader.cpp \
         filescomponent.cpp \
+        ioc.cpp \
+        ioctool.cpp \
         main.cpp
 
 # Default rules for deployment.
@@ -27,7 +29,8 @@ HEADERS += \
     chartscomponent.h \
     filereader.h \
     filescomponent.h \
-    ioc.h
+    ioc.h \
+    ioctool.h
 
 QT += charts
 
