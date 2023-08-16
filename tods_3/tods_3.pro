@@ -14,7 +14,6 @@ SOURCES += \
         chartscomponent.cpp \
         filereader.cpp \
         filescomponent.cpp \
-        ioc.cpp \
         ioctool.cpp \
         main.cpp
 
