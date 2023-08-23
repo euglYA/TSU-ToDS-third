@@ -101,6 +101,7 @@ public:
     //Фабрика, которая будет вызывать конструктор, для каждого экземпляра
     template<typename TInterface, typename TConcrete, typename... TArguments>
     void RegisterFactory() {
+        qDebug() << "refFact";
         RegisterFunctor(
             std::function<std::shared_ptr<TInterface>(std::shared_ptr<TArguments>... ts)>(
                 [](std::shared_ptr<TArguments>... arguments) -> std::shared_ptr<TInterface> {
@@ -118,6 +119,7 @@ public:
 
 static IOCContainer gContainer;
 
+inline int IOCContainer::s_nextTypeId = 115094801;
 // инициализируем ненулевым числом
 
 #endif
