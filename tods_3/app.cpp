@@ -12,6 +12,8 @@ App::App(QWidget *parent)
     this->setWindowTitle("Charts visualizer");
     this->setWindowIcon(QIcon(dir.path() + "/tods_3/logo.ico"));
 
+    this->iocTool = new IOCTool;
+
     this->filesComponent = new FilesComponent(this);
     filesComponent->setFixedWidth(459);
     this->chartsComponent = new ChartsComponent(this);
@@ -25,5 +27,25 @@ App::App(QWidget *parent)
 
     this->setCentralWidget(splitter);
     this->resize(1000, 700);
+
+    QObject::connect(this->filesComponent, &FilesComponent::fileSelected, this, &App::chartDataChanger);
+    QObject::connect(this, &App::updateFactoryType, this->iocTool, &IOCTool::changeFactoryType);
+    QObject::connect(this, &App::updateChartData, this->chartsComponent, &ChartsComponent::changeChartData);
+}
+
+void App::chartDataChanger(QFileInfo selectedFile) {
+
+    qDebug() << "File: " << selectedFile.fileName();
+    int maxSize = 109000;
+    emit updateFactoryType(selectedFile, maxSize);
+
+    QMap<QString, QVariant> data;
+
+    data = this->iocTool->getObject()->extractData(selectedFile);
+
+    qDebug() << data;
+
+    if (data.size() > 0)
+        emit updateChartData(data);
 }
 

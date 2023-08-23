@@ -5,11 +5,11 @@
 
 #include <QJsonDocument>
 
-bool JsonStrategy::extractData(const QFileInfo fileInfo) {
+QMap<QString, QVariant> JsonStrategy::extractData(QFileInfo fileInfo) {
     QFile file(fileInfo.filePath());
 
     if (!file.open(QIODevice::ReadOnly)) {
-        return false;
+        return QMap<QString, QVariant>();
     }
 
     QString jsonString;
@@ -27,15 +27,17 @@ bool JsonStrategy::extractData(const QFileInfo fileInfo) {
         value = jsonObject.toObject().value("Time");
         key = value.toString();
 
+
         value = jsonObject.toObject().value("Value");
         mapFromFile[key] = value;
     }
 
-
-    this->_data = mapFromFile;
-    return true;
+//    this->_data = mapFromFile;
+    return mapFromFile;
 }
 
-bool SQLiteStrategy::extractData(const QFileInfo file) {
-
+QMap<QString, QVariant> SQLiteStrategy::extractData(QFileInfo file) {
+    qDebug() << "extract sql";
+    Q_UNUSED(file);
+    return QMap<QString, QVariant>();
 }

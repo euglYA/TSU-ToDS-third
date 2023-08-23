@@ -35,7 +35,7 @@ FilesComponent::FilesComponent(QWidget *parent)
 }
 
 void FilesComponent::onClickedChooseDirectory() {
-    QString dir = QFileDialog::getExistingDirectory();
+    QString dir = QFileDialog::getExistingDirectory(this, tr("Выберите папку"), this->fsModel->rootPath(), QFileDialog::ShowDirsOnly);
     if (!dir.isEmpty()) {
         this->fsModel->setRootPath(dir);
         this->tableView->setRootIndex(this->fsModel->index(dir));

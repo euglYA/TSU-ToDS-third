@@ -5,9 +5,11 @@
 
 #include <QWidget>
 #include <QMainWindow>
+#include <QMap>
 
 #include "chartscomponent.h"
 #include "filescomponent.h"
+#include "ioctool.h"
 
 class App : public QMainWindow
 {
@@ -16,12 +18,16 @@ public:
     explicit App(QWidget *parent = nullptr);
 
 public slots:
+    void chartDataChanger(QFileInfo selectedFile);
 
 signals:
+    void updateFactoryType(QFileInfo selectedFile, int maxSize);
+    void updateChartData(QMap<QString, QVariant> data);
 
 private:
     FilesComponent *filesComponent;
     ChartsComponent *chartsComponent;
+    IOCTool *iocTool;
 };
 
 #endif // APP_H
