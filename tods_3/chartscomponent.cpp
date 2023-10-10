@@ -9,6 +9,8 @@ ChartsComponent::ChartsComponent(QWidget *parent)
     this->hLayout = new QHBoxLayout(this);
 
     this->saveAsPDF = new QPushButton("Сохранить в PDF", this);
+    this->saveAsPDF->setEnabled(false);
+
     this->chooseChartTypeLabel = new QLabel("Выберите тип диаграммы ", this);
     this->swapChartTheme = new QCheckBox("Черно-белый график", this);
     this->chooseChartType = new QComboBox(this);
@@ -22,7 +24,6 @@ ChartsComponent::ChartsComponent(QWidget *parent)
     this->_chart = chartView->chart();
     this->_chart->setTheme(QChart::ChartThemeQt);
     this->_chart->legend()->hide();
-//    this->_chart->legend()->showToolTips();
     this->chartType = new BarChart;
 
     this->hLayout->addWidget(this->chooseChartTypeLabel);
@@ -56,6 +57,7 @@ void ChartsComponent::changeChartType(const QString &text) {
 void ChartsComponent::changeChartData(QMap<QString, QVariant> data) {
     this->_data = data;
     this->rerenderChart();
+    this->saveAsPDF->setEnabled(true);
 }
 
 void ChartsComponent::swapBlackAndWhiteTheme(bool state) {
@@ -66,8 +68,9 @@ void ChartsComponent::swapBlackAndWhiteTheme(bool state) {
 }
 
 void ChartsComponent::saveChartAsPdf() {
-    if (this->_data.size() == 0)
+    if (this->_data.size() == 0) {
         return;
+    }
 
     QString dir = QFileDialog::getSaveFileName(this, "Save chart as PDF", QDir::homePath(), "PDF files (*.pdf)");
 
