@@ -15,7 +15,7 @@ public:
     std::shared_ptr<IFileReader> getObject();
 
 public slots:
-    void changeFactoryType(QFileInfo file, int maxSize);
+    void changeFactoryType(QFileInfo file);
 };
 
 #endif // IOCTOOL_H

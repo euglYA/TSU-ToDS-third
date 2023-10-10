@@ -3,6 +3,9 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QSplitter>
+#include <QMessageBox>
+
+
 
 App::App(QWidget *parent)
     : QMainWindow{parent}
@@ -15,7 +18,7 @@ App::App(QWidget *parent)
     this->iocTool = new IOCTool;
 
     this->filesComponent = new FilesComponent(this);
-    filesComponent->setFixedWidth(459);
+    this->filesComponent->setFixedWidth(459);
     this->chartsComponent = new ChartsComponent(this);
 
     QSplitter *splitter = new QSplitter(this);
@@ -35,17 +38,30 @@ App::App(QWidget *parent)
 
 void App::chartDataChanger(QFileInfo selectedFile) {
 
-    qDebug() << "File: " << selectedFile.fileName();
-    int maxSize = 109000;
-    emit updateFactoryType(selectedFile, maxSize);
+    qDebug() << "File: " << selectedFile.fileName() << " size: " << selectedFile.size();
+    int maxFileSize = 10240; // it equals to 10KiB
+
+    if (selectedFile.size() >= maxFileSize) {
+        this->returnMessageBox(selectedFile.fileName(), "файл слишком большой \nМаксимальный размер файла: 10KiB");
+        return;
+    }
+
+
+    emit updateFactoryType(selectedFile);
 
     QMap<QString, QVariant> data;
 
     data = this->iocTool->getObject()->extractData(selectedFile);
 
-    qDebug() << data;
+    qDebug() << data.size();
 
-    if (data.size() > 0)
+    if (data.size() < maxFileSize)
         emit updateChartData(data);
+}
+
+void App::returnMessageBox(QString text, QString secText) {
+    QMessageBox msg;
+    msg.setText(text + ": " + secText);
+    msg.exec();
 }
 

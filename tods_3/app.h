@@ -14,6 +14,9 @@
 class App : public QMainWindow
 {
     Q_OBJECT
+private:
+    void returnMessageBox(QString text, QString secText);
+
 public:
     explicit App(QWidget *parent = nullptr);
 
@@ -21,7 +24,7 @@ public slots:
     void chartDataChanger(QFileInfo selectedFile);
 
 signals:
-    void updateFactoryType(QFileInfo selectedFile, int maxSize);
+    void updateFactoryType(QFileInfo selectedFile);
     void updateChartData(QMap<QString, QVariant> data);
 
 private:
